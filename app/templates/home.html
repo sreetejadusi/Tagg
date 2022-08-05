@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+Tagg: Tag Your Friends
+
+{% endblock %}
+
+{% block content %}
+
+    {% if current_user.is_authenticated %}
+        {% include 'header.html' %}
+    {% else %}
+    <div class="container-fluid vh-100" style="background-image: url(../static/homebg.svg);">
+        <div class="row" style="right: 0; top: 0;">
+            <a href="{{ url_for('home') }}"><img src="../static/tagg.svg" alt="tagg" class="img-thumbnail mx-auto d-block" style="border: none; width: auto; height: 250px;background: transparent"></a><br><br><br>
+        </div>
+        <div class="d-flex row align-items-center">
+            <div class="col text-align-center">
+                <h1 style="font-size: 15vh;">Find Friends.<br>Make Friends.</h1><br><br>
+                <h1><a href="{{ url_for('login') }}"><button class="btn" style="font-size: 3vh;background-color: #190B28;color: white;">LogIn</button></a>&#160<span style="font-size: 25px;">(or)</span>&#160<a href="{{ url_for('register') }}"><button class="btn" style="font-size: 3vh;background-color: #190B28;color: white;">SignUp</button></a>&#160to find friends!</h1>
+            </div>
+            <div class="col">
+                <img src="../static/homegif.gif" alt="tagg" class="mx-auto d-block" style="width: 60vh;background: transparent">
+            </div>
+        </div> <br><br><br>
+        <div class="d-flex row float-bottom">
+            <p style="text-align: center;">Made with ❤️ by Sree Teja Dusi. Project open-sourced on <a href="https://github.com/sreetejadusi">GitHub</a></p>
+        </div>
+    </div>
+    {% endif %}
+
+{% endblock %}

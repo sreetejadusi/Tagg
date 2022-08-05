@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Login: Tagg
+
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center vh-100" style="background-image: url('../static/loginbg.svg');background-position: center;">
+    <div class="container" style="max-width: 40vh;">
+            <a href="{{ url_for('home') }}"><img src="../static/tagg.svg" alt="tagg" class="img-thumbnail mx-auto d-block" style="border: none; width: auto; height: 100px;"></a><br><br><br>
+            <h1 style="text-align: center; display: block;">Welcome back, Pal</h1> <br> <br>
+            <form method="post">
+                {{ form.hidden_tag() }}
+                {{ form.username(class= "form-control" , placeholder="Enter Username") }} <br>
+                {{ form.password(class= "form-control" , placeholder= "Enter Password") }} <br>
+                {{ form.submit(class= "btn btn-primary w-100") }} <br><br>
+                <p style="text-align: center;">New to Tagg? <a href="{{url_for('register')}}">Register</a></p>
+            </form>
+    </div>
+</div>
+{% endblock %}

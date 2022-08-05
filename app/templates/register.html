@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}
+
+    Register: Tagg
+
+{% endblock %}
+
+{% block content %}
+<div class="d-flex align-items-center vh-100" style="background-image: url('../static/Hi.svg');">
+    <div class="container" style="max-width: 40vh;">
+            <a href="{{ url_for('home') }}"><img src="../static/tagg.svg" alt="tagg" class="img-thumbnail mx-auto d-block" style="border: none; width: auto; height: 100px;"></a><br><br><br>
+            <h1 style="text-align: center; display: block;">Join the <span style="color: #F8333C; font-family: 'Pacifico', 'cursive';">Family</span></h1> <br> <br>
+            <form method="post">
+                {{ form.hidden_tag() }}
+                {{ form.first_name(class= "form-control" , placeholder="What's your First Name?") }} <br>
+                {{ form.last_name(class= "form-control" , placeholder="What's your Last Name?") }} <br>
+                {{ form.username(class= "form-control" , placeholder="Pick a Username") }} <br>
+                {{ form.email(class= "form-control" , placeholder= "Enter your email address...") }} <br>
+                {{ form.password(class= "form-control" , placeholder= "Enter a password..") }} <br>
+                {{ form.confirm(class= "form-control" , placeholder= "Confirm your password..") }} <br>
+                {{ form.submit(class= "btn btn-primary w-100") }} <br><br>
+                <p style="text-align: center;">Have an account? <a href="{{url_for('login')}}">Login</a></p>
+            </form>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,14 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oxygen:wght@300&family=Pacifico&display=swap" rel="stylesheet">
+
+<nav class="navbar navbar-expand-lg" style="background-color: #EFE9F4;">
+    <div class="container-fluid">
+        <a href="{{ url_for('home') }}" class="navbar-brand"><img src="../static/tagg.svg" alt="tagg" style="height: auto; width: 150px;"></a>
+        <div class="d-flex align-items-center" style="float: right;">
+            <ul class="navbar-nav">
+                    <h5>Hello, <span style="color: #CA054D; font-family: 'Oxygen', sans-serif; font-weight: 800;">{{ current_user.first_name }}</span></h5>
+            </ul>
+        </div>
+    </div>
+</nav>
