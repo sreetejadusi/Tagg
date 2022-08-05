@@ -1,4 +1,4 @@
-# Tagg
+# Tagg: A Social Media Platform
 Tagg: A Social Media Platform. Find Friends - Make Friends. Allows you to Share your Ideas and Memories
 
 GitHub: https://github.com/sreetejadusi
