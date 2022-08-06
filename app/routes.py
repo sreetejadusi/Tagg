@@ -1,13 +1,19 @@
 from app import app, forms, db, models
 from flask import render_template, flash, redirect, url_for
-from flask_login import login_user, logout_user
+from flask_login import login_user, logout_user, current_user
 
 
-@app.route('/')
+@app.route('/', methods=['GET', 'POST'])
 def home():
-	login = forms.Login()
-	register = forms.Register()
-	return render_template('home.html', login = login, register = register)
+	post = forms.Post()
+	if post.validate_on_submit():
+		post_to_create = models.Posts(content = post.content.data,
+		                              author = current_user.id
+		                              )
+		db.session.add(post_to_create)
+		db.session.commit()
+		flash('Post Created Successfully!', category='success')
+	return render_template('home.html', post = post)
 
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -38,7 +44,8 @@ def register():
 		                           )
 		db.session.add(create_user)
 		db.session.commit()
-		login_user(form.username.data)
+		attempted_user = models.Users.query.filter_by(username=form.username.data).first()
+		login_user(attempted_user)
 		flash("Welcome to The Family!. You are now Logged in.", category='success')
 		return redirect(url_for('home'))
 

@@ -1,6 +1,6 @@
 from cProfile import label
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField
 from wtforms.validators import Length, Email, DataRequired, EqualTo, ValidationError
 from app import models
 
@@ -28,3 +28,8 @@ class Login(FlaskForm):
 	username = StringField(validators=[DataRequired()])
 	password = StringField(validators=[DataRequired()])
 	submit = SubmitField(label='Log In')
+
+class Post(FlaskForm):
+	content = TextAreaField(validators=[DataRequired(), Length(max=30000)])
+	post = SubmitField(label='Post')
+	

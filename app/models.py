@@ -1,6 +1,6 @@
 from app import db, bcrypt, login_manager
 from flask_login import UserMixin
-
+import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -14,7 +14,7 @@ class Users(db.Model, UserMixin):
 	username = db.Column(db.String(length=30), nullable=False, unique=True)
 	email = db.Column(db.String(), nullable=False, unique=True)
 	password = db.Column(db.String(), nullable=False, unique=True)
-
+	posts = db.relationship('Posts', backref = 'user_posts', lazy= True )
 	@property
 	def passwordgen(self):
 		return self.passwordgen
@@ -25,3 +25,9 @@ class Users(db.Model, UserMixin):
 
 	def check_password(self, attempted_password):
 		return bcrypt.check_password_hash(self.password, attempted_password)
+
+class Posts(db.Model):
+	id = db.Column(db.Integer(), nullable=False, primary_key = True)
+	content = db.Column(db.String(length= 30000), nullable= False)
+	time = db.Column(db.String())
+	author = db.Column(db.Integer(), db.ForeignKey('users.id'))
