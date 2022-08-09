@@ -1,6 +1,6 @@
 from cProfile import label
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SearchField
 from wtforms.validators import Length, Email, DataRequired, EqualTo, ValidationError
 from app import models
 
@@ -32,4 +32,7 @@ class Login(FlaskForm):
 class Post(FlaskForm):
 	content = TextAreaField(validators=[DataRequired(), Length(max=30000)])
 	post = SubmitField(label='Post')
-	
+
+class Search(FlaskForm):
+	searchbox = SearchField(validators=[Length(max= 100)])
+	search = SubmitField(label='Search')

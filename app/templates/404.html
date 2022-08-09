@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    404. Page Not Found
+{% endblock %}
+
+{% block content %}
+
+    <div class="container d-flex align-items-center vw-100 vh-100">
+    <div class="col">
+        <h1>Well..You Turned The Wrong Way!</h1>
+        <a href="{{ url_for('home') }}"><button class="btn btn-primary">Take Me Home</button>
+        </a>
+    </div>
+    <div class="col">
+        <img src="../static/404.svg" alt="404" class="img-fluid">
+    </div>
+</div>
+
+{% endblock %}

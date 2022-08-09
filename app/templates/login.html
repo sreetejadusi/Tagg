@@ -15,6 +15,7 @@
                 {{ form.hidden_tag() }}
                 {{ form.username(class= "form-control" , placeholder="Enter Username") }} <br>
                 {{ form.password(class= "form-control" , placeholder= "Enter Password") }} <br>
+                <input type="checkbox" name="remember" id="remember">Remember me
                 {{ form.submit(class= "btn btn-primary w-100") }} <br><br>
                 <p style="text-align: center;">New to Tagg? <a href="{{url_for('register')}}">Register</a></p>
             </form>

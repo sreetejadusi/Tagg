@@ -21,6 +21,7 @@ Tagg: Tag Your Friends
                         <form method = 'post'>
                             {{ post.hidden_tag() }}
                             {{ post.content(placeholder = 'What''s up?', id = 'content') }}
+                            <p class="d-flex" style="float: right;">{{ count }}</p>
                             {{ post.post(class = 'btn btn-primary w-100', id = 'post') }}
                         </form>
                     </div>
