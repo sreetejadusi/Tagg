@@ -1,6 +1,6 @@
 from app import app, forms, db, models
 from flask import render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, current_user
+from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime
 
 
@@ -72,6 +72,7 @@ def logout():
 
 
 @app.route('/<user>')
+@login_required
 def user(user):
 	query = models.Users.query.filter_by(username=user).all()
 	title = None

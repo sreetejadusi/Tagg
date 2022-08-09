@@ -1,6 +1,5 @@
 from app import db, bcrypt, login_manager
 from flask_login import UserMixin
-import datetime
 
 @login_manager.user_loader
 def load_user(user_id):
@@ -9,11 +8,11 @@ def load_user(user_id):
 
 class Users(db.Model, UserMixin):
 	id = db.Column(db.Integer(), primary_key=True, nullable=False, unique=True)
-	first_name = db.Column(db.String(length=15), nullable=False, unique=True)
-	last_name = db.Column(db.String(length=15), nullable=False, unique=True)
+	first_name = db.Column(db.String(length=15), nullable=False)
+	last_name = db.Column(db.String(length=15), nullable=False)
 	username = db.Column(db.String(length=30), nullable=False, unique=True)
 	email = db.Column(db.String(), nullable=False, unique=True)
-	password = db.Column(db.String(), nullable=False, unique=True)
+	password = db.Column(db.String(), nullable=False)
 	about = db.Column(db.String())
 	friends = db.Column(db.String())
 	propic = db.Column(db.String(), default = '../static/propics/profiledef.svg' )
