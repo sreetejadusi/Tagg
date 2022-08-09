@@ -14,6 +14,7 @@ class Users(db.Model, UserMixin):
 	username = db.Column(db.String(length=30), nullable=False, unique=True)
 	email = db.Column(db.String(), nullable=False, unique=True)
 	password = db.Column(db.String(), nullable=False, unique=True)
+	about = db.Column(db.String())
 	friends = db.Column(db.String())
 	propic = db.Column(db.String(), default = '../static/propics/profiledef.svg' )
 	posts = db.relationship('Posts', backref = 'user_posts', lazy= True )

@@ -3,3 +3,19 @@
 {% block title %}
     {{ title }}
 {% endblock %}
+
+{% block content %}
+
+<div class="container-fluid vh-100" style="background-image: url(../static/profilebg.svg);">
+    <div class="row">
+        <div class="col d-flex justify-content-start align-items-center" style="position: relative;display: flex;margin: 8% 0 0 10%;">
+            <img src="{{ userdata.propic }}" alt="" style="width: 300px;background-color: white;border-radius: 100%;">
+            <h1 style="font-size: 7vh;font-family: 'Varela Round', sans-serif;position: absolute; right: 0; top: 0;padding-right: 35vh;">{{ userdata.firstname + ' ' + userdata.lastname }}</h1>
+            <h1 style="font-size: 3vh;font-family: 'Oxygen', sans-serif;position: absolute; left: 0; bottom: 30;padding-left: 35vh;">{{ '@' + userdata.username}}</h1>
+            
+
+        </div>
+    </div>
+</div>
+
+{% endblock %}

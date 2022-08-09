@@ -3,6 +3,7 @@ from flask import render_template, flash, redirect, url_for, request
 from flask_login import login_user, logout_user, current_user
 from datetime import datetime
 
+
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	post = forms.Post()
@@ -14,7 +15,7 @@ def home():
 		db.session.add(post_to_create)
 		db.session.commit()
 		flash('Post Created Successfully!', category='success')
-	return render_template('home.html', post=post, count = count)
+	return render_template('home.html', post=post)
 
 
 @app.route('/login', methods=['GET', 'POST'])
