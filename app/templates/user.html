@@ -6,14 +6,31 @@
 
 {% block content %}
 
-<div class="container-fluid vh-100" style="background-image: url(../static/profilebg.svg);">
-    <div class="row">
-        <div class="col d-flex justify-content-start align-items-center" style="position: relative;display: flex;margin: 8% 0 0 10%;">
-            <img src="{{ userdata.propic }}" alt="" style="width: 300px;background-color: white;border-radius: 100%;">
-            <h1 style="font-size: 7vh;font-family: 'Varela Round', sans-serif;position: absolute; right: 0; top: 0;padding-right: 35vh;">{{ userdata.firstname + ' ' + userdata.lastname }}</h1>
-            <h1 style="font-size: 3vh;font-family: 'Oxygen', sans-serif;position: absolute; left: 0; bottom: 30;padding-left: 35vh;">{{ '@' + userdata.username}}</h1>
-            
-
+<div class="container-fluid vh-100 d-flex align-items-center justify-content-center" style="background-image: url(../static/userbg.png);background-position: center;">
+    <div class="row" style="height: 80%; width: 70%;">
+        <div class="row">
+            <div class="col-2"><img src="{{ userdata.propic }}" alt="{{ userdata.username }}" style="background-color: white; border-radius: 100%; width: 250px; margin-left: -10vh; margin-top: -2vh;"></div>
+            <div class="col" style="padding-top: 3vh;">
+                <div class="row" style="float: right;"><h1>{{ userdata.firstname + ' ' + userdata.lastname }}</h1></div>
+                <br>
+                <br>
+                <br>
+                <div class="row" style="float: left;"><h1>@{{ userdata.username }}</h1></div> <br><br><br><br>
+                <div class="row d-flex">
+                    <div class="col">
+                        <h1>About</h1>
+                        <p>{{ userdata.about }}</p>
+                    </div>
+                    <div class="col">
+                        <h1>Bio</h1>
+                        {% if userdata.bio != None %}
+                            {% for x in userdata.bio %}
+                                <p>LULULULU</p>
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>

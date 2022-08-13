@@ -72,7 +72,6 @@ def logout():
 
 
 @app.route('/<user>')
-@login_required
 def user(user):
 	query = models.Users.query.filter_by(username=user).all()
 	title = None
@@ -86,6 +85,8 @@ def user(user):
 			userdata.update(email=x.email)
 			userdata.update(friends=x.friends)
 			userdata.update(propic=x.propic)
+			userdata.update(about = x.about)
+			userdata.update(bio = x.bio)
 			title = x.first_name + ' ' + x.last_name
 		template = 'user.html'
 	else:
