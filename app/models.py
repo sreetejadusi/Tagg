@@ -16,8 +16,10 @@ class Users(db.Model, UserMixin):
 	about = db.Column(db.String())
 	friends = db.Column(db.String())
 	propic = db.Column(db.String(), default = '../static/propics/profiledef.svg' )
-	bio = db.Column(db.String(), default = 'Yo! I''m Using Tagg!')
+	cover = db.Column(db.String(), default= '../static/coverdef.svg')
+	status = db.Column(db.String(), default = 'Yo! I''m Using Tagg!')
 	posts = db.relationship('Posts', backref = 'user_posts', lazy= True )
+	joined = db.Column(db.String(), nullable= False)
 	@property
 	def passwordgen(self):
 		return self.passwordgen

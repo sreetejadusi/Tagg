@@ -1,9 +1,11 @@
 from app import app, forms, db, models
 from flask import render_template, flash, redirect, url_for, request
-from flask_login import login_user, logout_user, current_user, login_required
+import random
+from flask_login import login_user, logout_user, current_user, login_required, user_logged_in
 from datetime import datetime
 
 
+avatars = ['./static/avatars/Boy1.svg', './static/avatars/Boy2.svg', './static/avatars/Boy3.svg', './static/avatars/Boy4.svg', './static/avatars/Boy5.svg', './static/avatars/Boy6.svg', './static/avatars/Girl1.svg', './static/avatars/Girl2.svg', './static/avatars/Girl3.svg', './static/avatars/Girl4.svg', './static/avatars/Girl5.svg', './static/avatars/Girl6.svg']
 @app.route('/', methods=['GET', 'POST'])
 def home():
 	post = forms.Post()
@@ -38,8 +40,12 @@ def login():
 		else:
 			flash('Please check your Username and Password', category='warning')
 
-	return render_template('login.html', form=form)
+	if current_user.is_authenticated:
+		flash('You''re already logged in!', category='info')
+		return redirect(url_for('home'))
 
+	else:
+		return render_template('login.html', form = form)
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
@@ -49,7 +55,9 @@ def register():
 		                           last_name=form.last_name.data,
 		                           username=form.username.data,
 		                           email=form.email.data,
-		                           passwordgen=form.password.data
+		                           passwordgen=form.password.data,
+		                           propic = random.choice(avatars),
+		                           joined = datetime.now().strftime('%d/%m/%Y')
 		                           )
 		db.session.add(create_user)
 		db.session.commit()
@@ -61,8 +69,11 @@ def register():
 	if form.errors != {}:
 		for error in form.errors.values():
 			flash(error, category="danger")
-	return render_template('register.html', form=form)
 
+	if current_user.is_authenticated:
+		return redirect(url_for('home'))
+	else:
+		return render_template('register.html',form=form)
 
 @app.route('/logout')
 def logout():
@@ -93,3 +104,13 @@ def user(user):
 		template = '404.html'
 
 	return render_template(template, userdata=userdata, title=title)
+
+@app.route('/profile')
+@login_required
+def profile():
+	return render_template('profile.html')
+
+@app.route('/settings')
+@login_required
+def settings():
+	return render_template('settings.html')

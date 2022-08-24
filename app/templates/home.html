@@ -17,11 +17,22 @@ Tagg: Tag Your Friends
                     <h1>Friends</h1>
                 </div>
                 <div class="col" style="padding: 0 12.5% 0 12.5%;">
-                    <div>
+                    <div id="poster">
                         <form method = 'post'>
+                            <div class="row">
+                                <div class="col d-flex" style="max-width: 5vh;align-items: flex-start;padding-top: 2px;">
+                                    <img src="{{ current_user.propic }}" alt="profile" style="width: 35px;float: left; top: 0;left: 0;">
+                                </div>
+                                <div class="col d-flex align-items-center">
+                                    <p style="float:left;">Posting as {{ current_user.first_name +' '+ current_user.last_name }}</p>
+                                </div>
+                                <div class="col">
+                                    <p style="float: right;">{{ post.post(class='btn btn-primary') }}</p>
+                                </div>
+                            </div>
                             {{ post.hidden_tag() }}
-                            {{ post.content(placeholder = 'What''s up?', id = 'content') }}
-                            {{ post.post(class = 'btn btn-primary w-100', id = 'post') }}
+                            {{ post.content(placeholder = 'What''s up?', id='postbox') }}
+
                         </form>
                     </div>
                 </div>
@@ -61,22 +72,41 @@ Tagg: Tag Your Friends
     {% endif %}
 
     <style>
+
         body{
-            background-color: #ededed;
+            background-color: #fafafa;
         }
 
-        #content{
+
+        #poster{
 
             width: 100%;
+            background-color: white;
+            resize: none;
+            border: solid 0.1px black;
+            padding: 1vh;
+            border-radius:15px;
+        }
+
+        #postbox{
+            width: 100%;
+            border: none;
             height: 30vh;
             resize: none;
-            overflow: visible;
-            overflow-x: hidden;
+            border: none;
             scroll-behavior: smooth;
-            border: solid 0.2px gray;
-            padding: 1vh;
-            border-radius: 15px;
+            overflow-x: hidden;
+            overflow-y: visible;
+            border-color: transparent;
+            border-style: none;
         }
+
+        #postbox::selection{
+            background-color: #1768AC;
+            color: white;
+
+        }
+
     </style>
 
 {% endblock %}

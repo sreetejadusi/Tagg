@@ -1,4 +1,3 @@
-from cProfile import label
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SearchField
 from wtforms.validators import Length, Email, DataRequired, EqualTo, ValidationError
@@ -26,7 +25,7 @@ class Register(FlaskForm):
 
 class Login(FlaskForm):
 	username = StringField(validators=[DataRequired()])
-	password = StringField(validators=[DataRequired()])
+	password = PasswordField(validators=[DataRequired()])
 	submit = SubmitField(label='Log In')
 
 class Post(FlaskForm):

@@ -1,11 +1,11 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Oxygen:wght@300&family=Pacifico&display=swap" rel="stylesheet"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+<link href="https://fonts.googleapis.com/css2?family=Cabin&family=Dancing+Script:wght@600&family=Oxygen:wght@300&family=Pacifico&family=Varela+Round&display=swap" rel="stylesheet">
 
-<nav class="row navbar navbar-expand-lg" style="background-color: white;">
+<nav class="row navbar navbar-expand-lg" style="background-color: white;width: 100vw;">
     <div class="row">
-        <img src="../static/tagg.svg" alt="tagg" style="width: 140px;">      
         <div class="col d-flex align-items-center">
+            <img src="../static/tagg.svg" alt="tagg" style="width: 140px;">      
             <form class="d-flex" role="search" style="width: 40vh;">
                 <input class="form-control me-2" type="search" placeholder="Search by username, tags, posts" aria-label="Search">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
@@ -25,7 +25,17 @@
         <div class="col d-flex align-items-center justify-content-end">
             <ul class="navbar-nav">
                 <li class="nav-item d-flex align-items-center"><h5 style="font-family: 'Pacifico';">Hello, <span style="color: #191923; font-family: 'Oxygen', sans-serif; font-weight: 800;">{{ current_user.first_name }}</span></h5></li>&#160 &#160
-                <li class="nav-item"><img src="{{ current_user.propic }}" alt="profile" style="width: 30px; border-radius: 100%;"></li>
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <li class="nav-item"><img src="{{ current_user.propic }}" alt="profile" style="width: 30px; border-radius: 100%;"></li>
+                    </button>
+                    <ul class="dropdown-menu" style="margin-left: -6.25rem;">
+                      <li><a class="dropdown-item" href="{{ url_for('profile') }}">Profile</a></li>
+                      <li><a class="dropdown-item" href="#">Settings</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><a class="dropdown-item" href="{{ url_for('logout') }}">Logout</a></li>
+                    </ul>
+                </div>
             </ul>
         </div>
     </div>
