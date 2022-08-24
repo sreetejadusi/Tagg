@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+
+Profile: {{ current_user.first_name + ' ' + current_user.last_name }}
+
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid" style="height: 280px;margin-top: 20px;">
+    <div class="row d-flex align-items-center justify-content-center" style="background-color: transparent;height: 100%;position: relative;">
+        <button class="btn btn-warning" style="position: absolute;width: 20vh;z-index: 1;left: 5px;top:0;">Change Cover Photo</button>
+        <img src="{{ current_user.cover }}" alt="cover" style="display: absolute;width: auto;">
+        <div style="display: flex;position: absolute;align-items: center;justify-content: center;padding-top: 30vh;">
+            <img class="img" id="profile" src="{{ current_user.propic }}" alt="profile" style="padding: 5px; background-color: orangered;border-radius: 100%;max-width: 400px;width: auto;">
+            <span id="change" style="position: absolute;display: flex;align-items: center;justify-content: center;"><button class="btn btn-success">Change Profile Photo</button></span>
+        </div>
+    </div>
+    <div class="row" style="z-index: 1;padding: 10vh;">
+        <div class="col">
+            <h1>Bio</h1> <br><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Name: </span>{{ current_user.first_name + ' ' + current_user.last_name }}</h3><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Email: </span>{{ current_user.email }}</h3><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">User Since: </span>{{ current_user.joined }}</h3><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Phone: </span>{% if current_user.phone == NULL %}<button class="btn btn-primary">Add Phone Number</button>{% else %}<p>{{ current_user.phone }}</p>{% endif %}</p><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">About: </span><br>{{ current_user.about }}</p><br>
+        </div>
+        <div class="col" style="display: flex;justify-content: center;">
+            <div>
+                <div style="text-align: center;">
+                    <h1>Posts</h1>
+                </div>
+                <div style="text-align: center;">
+                    <p>Posts. Sample Text!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    #change{
+        visibility: hidden;
+        background-color: rgba(0, 0, 0, 0.06);
+    }
+
+    #change:hover{
+        visibility: visible;
+    }
+
+    #profile:hover ~ #change{
+        visibility: visible;
+        background-color: rgba(0, 0, 0, 0.06);
+        width: 400px;
+        height: 400px;
+        border-radius: 100%;
+    }
+</style>
+
+{% endblock %}
