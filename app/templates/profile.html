@@ -9,7 +9,7 @@ Profile: {{ current_user.first_name + ' ' + current_user.last_name }}
 
 <div class="container-fluid" style="height: 280px;margin-top: 20px;">
     <div class="row d-flex align-items-center justify-content-center" style="background-color: transparent;height: 100%;position: relative;">
-        <button class="btn btn-warning" style="position: absolute;width: 20vh;z-index: 1;left: 5px;top:0;">Change Cover Photo</button>
+        <button class="btn btn-warning" data-bs-toggle="modal" data-bs-target="#phonechange" style="position: absolute;width: 20vh;z-index: 1;left: 5px;top:0;">Change Cover Photo</button>
         <img src="{{ current_user.cover }}" alt="cover" style="display: absolute;width: auto;">
         <div style="display: flex;position: absolute;align-items: center;justify-content: center;padding-top: 30vh;">
             <img class="img" id="profile" src="{{ current_user.propic }}" alt="profile" style="padding: 5px; background-color: orangered;border-radius: 100%;max-width: 400px;width: auto;">
@@ -22,18 +22,72 @@ Profile: {{ current_user.first_name + ' ' + current_user.last_name }}
             <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Name: </span>{{ current_user.first_name + ' ' + current_user.last_name }}</h3><br>
             <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Email: </span>{{ current_user.email }}</h3><br>
             <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">User Since: </span>{{ current_user.joined }}</h3><br>
-            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Phone: </span>{% if current_user.phone == NULL %}<button class="btn btn-primary">Add Phone Number</button>{% else %}<p>{{ current_user.phone }}</p>{% endif %}</p><br>
+            <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">Phone: </span>{% if current_user.phone == NULL %}<button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#phonechange">Add Phone Number</button>{% else %}<p>{{ current_user.phone }}</p>{% endif %}</p><br>
             <h3 style="font-family: 'Oxygen', sans-serif;"><span style="font-family: 'Cabin', sans-serif;">About: </span><br>{{ current_user.about }}</p><br>
         </div>
         <div class="col" style="display: flex;justify-content: center;">
             <div>
                 <div style="text-align: center;">
-                    <h1>Posts</h1>
+                    <h1>Friends</h1>
                 </div>
                 <div style="text-align: center;">
-                    <p>Posts. Sample Text!</p>
+                    <p>Friends. Sample Text!</p>
                 </div>
             </div>
+        </div>
+    </div>
+    <hr>
+    <div class="row" style="height: 20vh;">
+        <div class="col d-flex justify-content-center align-items-center">
+            <h1>Posts</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col d-flex justify-content-center align-items-center">
+            <p>Sample Paragraph Text</p>
+        </div>
+    </div>
+</div>
+
+<!--COVER CHANGE TRIGGER-->
+<div class="modal fade" id="phonechange" tabindex="-1" aria-labelledby="phonechangeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="phonechangeLabel">Update Cover Photo</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Best Fit: 1835*280</p>
+            <p>Choose Cover Photo:</p><br>
+            <p>{{ cover.cover(class="form-control form-control-sm",id="formFileSm",type="file") }}</p>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            {{ cover.update(class="btn btn-success", type='button') }}
+        </div>
+        </div>
+    </div>
+</div>
+
+<!--PHONE CHANGE TRIGGER-->
+<div class="modal fade" id="phonechange" tabindex="-1" aria-labelledby="phonechangeLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title" id="phonechangeLabel">Update Mobile Number</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <p>Enter Mobile Number</p><br>
+            <p>{{phone.phone(class='form-control')}}</p>
+            
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            {{ phone.update(class="btn btn-success", type='button') }}
+        </div>
         </div>
     </div>
 </div>

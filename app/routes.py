@@ -1,7 +1,7 @@
 from app import app, forms, db, models
 from flask import render_template, flash, redirect, url_for, request
 import random
-from flask_login import login_user, logout_user, current_user, login_required, user_logged_in
+from flask_login import login_user, logout_user, current_user, login_required
 from datetime import datetime
 
 
@@ -108,7 +108,9 @@ def user(user):
 @app.route('/profile')
 @login_required
 def profile():
-	return render_template('profile.html')
+	coverform = forms.CoverUpdate()
+	phoneform = forms.PhoneUpdate()
+	return render_template('profile.html', cover = coverform, phone = phoneform)
 
 @app.route('/settings')
 @login_required

@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SearchField
+from wtforms import StringField, PasswordField, SubmitField, TextAreaField, SearchField, FileField
 from wtforms.validators import Length, Email, DataRequired, EqualTo, ValidationError
 from app import models
 
@@ -35,3 +35,10 @@ class Post(FlaskForm):
 class Search(FlaskForm):
 	searchbox = SearchField(validators=[Length(max= 100)])
 	search = SubmitField(label='Search')
+class CoverUpdate(FlaskForm):
+	cover = FileField(validators=[DataRequired()])
+	update = SubmitField(label='Update')
+
+class PhoneUpdate(FlaskForm):
+	phone = StringField(validators=[Length(max=16)])
+	update = SubmitField(label='Update')
